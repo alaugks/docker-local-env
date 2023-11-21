@@ -1,0 +1,23 @@
+version: '3.6'
+services:
+  mariadb-16-6-16:
+    image: mariadb:10.6.16
+    container_name: dev_mariadb-16-6-16
+    ports:
+      - 23307:3306
+    volumes:
+      - mariadb-16-6-16:/var/lib/mysql
+    networks:
+      - dev_network
+    command: --max_allowed_packet=32505856 # Set max_allowed_packet to 256M (or any other value)
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootdocker
+      MYSQL_PASSWORD: root
+
+volumes:
+  mariadb-16-6-16:
+
+networks:
+  dev_network:
+    name: dev_network
