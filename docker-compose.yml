@@ -49,6 +49,16 @@ services:
       - 16379:6379
     restart: always
 
+  # PHP 8.2.14-fpm
+  php-8-2-14-fpm:
+    build:
+      context: .
+      dockerfile: Dockerfile.php-8-2-14-fpm
+    container_name: php-8-2-14-fpm
+    networks:
+      - dev_network
+    restart: always
+
 volumes:
   mariadb-10-6-16:
     name: mariadb-10-6-16
