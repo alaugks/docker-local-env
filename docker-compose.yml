@@ -1,22 +1,61 @@
 version: '3.6'
 services:
-  mariadb-16-6-16:
-    image: mariadb:10.6.16
-    container_name: dev_mariadb-16-6-16
+
+  # MariaDB 10.9.3
+  mariadb-10-9-3:
+    image: mariadb:10.9.3
+    container_name: mariadb-10-9-3
     ports:
-      - 23307:3306
+      - 13306:3306
     volumes:
-      - mariadb-16-6-16:/var/lib/mysql
+      - mariadb-10-9-3:/var/lib/mysql
     networks:
       - dev_network
-    command: --max_allowed_packet=32505856 # Set max_allowed_packet to 256M (or any other value)
+    command: --max_allowed_packet=32505856
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootdocker
-      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root-password
+      MARIADB_DATABASE: dev-database
+      MARIADB_USER: dev-user
+      MARIADB_PASSWORD: dev-password
+
+  # MariaDB 10.6.16
+  mariadb-10-6-16:
+    image: mariadb:10.6.16
+    container_name: mariadb-10-6-16
+    ports:
+      - 13307:3306
+    volumes:
+      - mariadb-10-6-16:/var/lib/mysql
+    networks:
+      - dev_network
+    command: --max_allowed_packet=32505856
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root-password
+      MARIADB_DATABASE: dev-database
+      MARIADB_USER: dev-user
+      MARIADB_PASSWORD: dev-password
+
+  # Redis 7.2.4
+  redis-7-2-4:
+    image: redis:7.2.4-alpine
+    container_name: redis-7-2-4
+    volumes:
+      - redis-7-2-4:/data
+    networks:
+      - dev_network
+    ports:
+      - 16379:6379
+    restart: always
 
 volumes:
-  mariadb-16-6-16:
+  mariadb-10-6-16:
+    name: mariadb-10-6-16
+  mariadb-10-9-3:
+    name: mariadb-10-9-3
+  redis-7-2-4:
+    name: redis-7-2-4
 
 networks:
   dev_network:
