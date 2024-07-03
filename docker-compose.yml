@@ -1,4 +1,3 @@
-version: '3.6'
 services:
 
   # MariaDB 10.9.3
@@ -59,6 +58,64 @@ services:
       - dev_network
     restart: always
 
+  # S3Mock
+  s3mock:
+    image: adobe/s3mock:3.5.2
+    container_name: s3mock
+    volumes:
+      - s3mock:/data
+    environment:
+      - initialBuckets=test-bucket
+    ports:
+      - "9090:9090"
+      - "9091:9091"
+    networks:
+      - dev_network
+    restart: always
+
+  # S3Mock
+  s3mock-3-6-0:
+    image: adobe/s3mock:3.6.0
+    container_name: s3mock-3-6-0
+    volumes:
+      - s3mock-3-6-0:/data
+    environment:
+      - initialBuckets=test-bucket
+    ports:
+      - "9092:9090"
+      - "9093:9091"
+    networks:
+      - dev_network
+    restart: always
+
+  minio:
+    image: minio/minio
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    networks:
+      - dev_network
+    restart: always
+    volumes:
+      - minio:/data
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
+    command: server /data --console-address ":9001"
+
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc alias set myminio http://minio:9000 minio minio123;
+      /usr/bin/mc mb myminio/somebucketname;
+      /usr/bin/mc policy set public myminio/somebucketname;
+      exit 0;
+      "
+
 volumes:
   mariadb-10-6-16:
     name: mariadb-10-6-16
@@ -66,6 +123,12 @@ volumes:
     name: mariadb-10-9-3
   redis-7-2-4:
     name: redis-7-2-4
+  s3mock:
+    name: s3mock
+  s3mock-3-6-0:
+    name: s3mock-3-6-0
+  minio:
+    name: minio
 
 networks:
   dev_network:
