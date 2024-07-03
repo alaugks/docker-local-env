@@ -116,6 +116,19 @@ services:
       exit 0;
       "
 
+  mongo-7-0-12:
+    image: mongo:7.0.12
+    ports:
+      - 27017:27017
+    networks:
+      - dev_network
+    restart: always
+    volumes:
+      - mongo-7-0-12:/data
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: gsdAtrzggHatrlahdgv2
+
 volumes:
   mariadb-10-6-16:
     name: mariadb-10-6-16
@@ -129,6 +142,8 @@ volumes:
     name: s3mock-3-6-0
   minio:
     name: minio
+  mongo-7-0-12:
+    name: mongo-7-0-12
 
 networks:
   dev_network:
