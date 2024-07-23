@@ -9,6 +9,9 @@
 * S3Mock 3.6.0
 * min.io RELEASE.2024-06-29T01-20-47Z
 
+The **dev_network** network is created. All service data is stored in volumes.
+
+
 ## Installation
 
 ### Clone project
