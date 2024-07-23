@@ -1,4 +1,4 @@
-FROM php:8.2.14-fpm
+FROM php:8.2.21-fpm
 
 # > Only for debugging
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
