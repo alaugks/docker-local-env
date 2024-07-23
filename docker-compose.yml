@@ -48,12 +48,12 @@ services:
       - dev_network
     restart: always
 
-  # PHP 8.2.14-fpm
-  php-8-2-14-fpm:
+  # PHP 8.2.21-fpm
+  php-fpm-cf:
     build:
       context: .
-      dockerfile: Dockerfile.php-8-2-14-fpm
-    container_name: php-8-2-14-fpm
+      dockerfile: Dockerfile.php-fpm-cf
+    container_name: php-fpm-cf
     networks:
       - dev_network
     restart: always
@@ -71,7 +71,6 @@ services:
       - dev_network
     environment:
       - initialBuckets=test-bucket
-    restart: always
 
   # S3Mock 3.6.0
   s3mock-3-6-0:
@@ -88,6 +87,7 @@ services:
     environment:
       - initialBuckets=test-bucket
 
+  # min.io RELEASE.2024-06-29T01-20-47Z
   minio:
     image: minio/minio:RELEASE.2024-06-29T01-20-47Z
     container_name: minio
@@ -101,7 +101,7 @@ services:
     restart: always
     environment:
       MINIO_ROOT_USER: minio
-      MINIO_ROOT_PASSWORD: minio123
+      MINIO_ROOT_PASSWORD: dev-password
     command: server /data --console-address ":9001"
 
   createbuckets:
@@ -110,14 +110,16 @@ services:
       - minio
     entrypoint: >
       /bin/sh -c "
-      /usr/bin/mc alias set myminio http://minio:9000 minio minio123;
-      /usr/bin/mc mb myminio/somebucketname;
-      /usr/bin/mc policy set public myminio/somebucketname;
+      /usr/bin/mc alias set minio http://minio:9000 minio dev-password;
+      /usr/bin/mc mb minio/testS3bucket;
+      /usr/bin/mc policy set public minio/testS3bucket;
       exit 0;
       "
 
+  # MongoDB 7.0.12
   mongo-7-0-12:
     image: mongo:7.0.12
+    container_name: mongo-7-0-12
     ports:
       - 27017:27017
     volumes:
@@ -127,7 +129,7 @@ services:
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: gsdAtrzggHatrlahdgv2
+      MONGO_INITDB_ROOT_PASSWORD: root-dev-password
 
 volumes:
   mariadb-10-6-16:
