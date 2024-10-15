@@ -17,10 +17,10 @@
             <td>13306:3306</td>
             <td>dev_network</td>
             <td>
-                <span style="text-wrap: nowrap;">MYSQL_ROOT_PASSWORD: root-password</span><br>
-                <span style="text-wrap: nowrap;">MARIADB_DATABASE: dev-database</span><br>
-                <span style="text-wrap: nowrap;">MARIADB_USER: dev-user</span><br>
-                <span style="text-wrap: nowrap;">MARIADB_PASSWORD: dev-password</span><br>
+                MYSQL_ROOT_PASSWORD: root-password<br>
+                MARIADB_DATABASE: dev-database<br>
+                MARIADB_USER: dev-user<br>
+                MARIADB_PASSWORD: dev-password<br>
             </td>
         </tr>
         <tr>
@@ -29,10 +29,10 @@
             <td>13307:3306</td>
             <td>dev_network</td>
             <td>
-                <span style="text-wrap: nowrap;">MYSQL_ROOT_PASSWORD: root-password</span><br>
-                <span style="text-wrap: nowrap;">MARIADB_DATABASE: dev-database</span><br>
-                <span style="text-wrap: nowrap;">MARIADB_USER: dev-user</span><br>
-                <span style="text-wrap: nowrap;">MARIADB_PASSWORD: dev-password</span><br>
+                MYSQL_ROOT_PASSWORD: root-password<br>
+                MARIADB_DATABASE: dev-database<br>
+                MARIADB_USER: dev-user<br>
+                MARIADB_PASSWORD: dev-password<br>
             </td>
         </tr>
         <tr>
@@ -48,8 +48,8 @@
             <td>27017:27017</td>
             <td>dev_network</td>
             <td>
-                <span style="text-wrap: nowrap;">MONGO_INITDB_ROOT_USERNAME: root</span><br>
-                <span style="text-wrap: nowrap;">MONGO_INITDB_ROOT_PASSWORD: root-dev-password</span><br>
+                MONGO_INITDB_ROOT_USERNAME: root<br>
+                MONGO_INITDB_ROOT_PASSWORD: root-dev-password<br>
             </td>
         </tr>
         <tr>
@@ -64,7 +64,7 @@
             <td>s3mock-5-3</td>
             <td>
                 9090:9090<br>
-                <span style="text-wrap: nowrap;">9091:9091 (Admin)</span>
+                9091:9091 (Admin)</span>
             </td>
             <td>dev_network</td>
             <td></td>
@@ -74,7 +74,7 @@
             <td>s3mock-6-0</td>
             <td>
                 9092:9090<br>
-                <span style="text-wrap: nowrap;">9093:9091 (Admin)</span>
+                9093:9091 (Admin)</span>
             </td>
             <td>dev_network</td>
             <td></td>
@@ -84,12 +84,12 @@
             <td>minio</td>
             <td>
                 9004:9000<br>
-                <span style="text-wrap: nowrap;">9005:9001 (Admin)</span>
+                9005:9001 (Admin)</span>
             </td>
             <td>dev_network</td>
             <td>
-                <span style="text-wrap: nowrap;">MINIO_ROOT_USER: minio</span><br>
-                <span style="text-wrap: nowrap;">MINIO_ROOT_PASSWORD: dev-password</span><br>
+                MINIO_ROOT_USER: minio<br>
+                MINIO_ROOT_PASSWORD: dev-password<br>
             </td>
         </tr>
     </tbody>
