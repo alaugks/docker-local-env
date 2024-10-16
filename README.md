@@ -62,7 +62,7 @@
             <td></td>
         </tr>
         <tr>
-            <td>S3Mock 3.*</td>
+            <td>S3Mock 3.11.0</td>
             <td>s3mock-3</td>
             <td>9092:9090</td>
             <td>dev_network</td>
