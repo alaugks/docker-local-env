@@ -58,27 +58,14 @@ services:
       - dev_network
     restart: always
 
-  # S3Mock 3.5.2
-  s3mock:
-    image: adobe/s3mock:3.5.2
-    container_name: s3mock-5-3
-    ports:
-      - "9090:9090"
-    volumes:
-      - s3mock:/data
-    networks:
-      - dev_network
-    environment:
-      - initialBuckets=test-bucket
-
-  # S3Mock 3.6.0
-  s3mock-3-6-0:
-    image: adobe/s3mock:3.6.0
-    container_name: s3mock-3-6
+  # S3Mock
+  s3mock-3:
+    image: adobe/s3mock:3.11.0
+    container_name: s3mock-3
     ports:
       - "9092:9090"
     volumes:
-      - s3mock-3-6-0:/data
+      - s3mock:/data
     networks:
       - dev_network
     restart: always
@@ -138,8 +125,6 @@ volumes:
     name: redis-7-2
   s3mock:
     name: s3mock
-  s3mock-3-6-0:
-    name: s3mock-3-6-0
   minio:
     name: minio
   mongo-7-0:

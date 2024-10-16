@@ -62,15 +62,8 @@
             <td></td>
         </tr>
         <tr>
-            <td>S3Mock 3.5.2</td>
-            <td>s3mock-5-3</td>
-            <td>9090:9090</td>
-            <td>dev_network</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>S3Mock 3.6.0</td>
-            <td>s3mock-6-0</td>
+            <td>S3Mock 3.*</td>
+            <td>s3mock-3</td>
             <td>9092:9090</td>
             <td>dev_network</td>
             <td></td>
