@@ -64,7 +64,6 @@ services:
     container_name: s3mock-5-3
     ports:
       - "9090:9090"
-      - "9091:9091"
     volumes:
       - s3mock:/data
     networks:
@@ -78,7 +77,6 @@ services:
     container_name: s3mock-3-6
     ports:
       - "9092:9090"
-      - "9093:9091"
     volumes:
       - s3mock-3-6-0:/data
     networks:

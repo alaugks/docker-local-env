@@ -17,10 +17,11 @@
             <td>13306:3306</td>
             <td>dev_network</td>
             <td>
-                MYSQL_ROOT_PASSWORD: root-password<br>
-                MARIADB_DATABASE: dev-database<br>
-                MARIADB_USER: dev-user<br>
-                MARIADB_PASSWORD: dev-password<br>
+                RootUsername: root<br>
+                RootPassword: root-password<br>
+                DefaultDatabase: dev-database<br>
+                DefaultUser: dev-user<br>
+                DefaultPassword: dev-password<br>
             </td>
         </tr>
         <tr>
@@ -29,10 +30,11 @@
             <td>13307:3306</td>
             <td>dev_network</td>
             <td>
-                MYSQL_ROOT_PASSWORD: root-password<br>
-                MARIADB_DATABASE: dev-database<br>
-                MARIADB_USER: dev-user<br>
-                MARIADB_PASSWORD: dev-password<br>
+                RootUsername: root<br>
+                RootPassword: root-password<br>
+                DefaultDatabase: dev-database<br>
+                DefaultUser: dev-user<br>
+                DefaultPassword: dev-password<br>
             </td>
         </tr>
         <tr>
@@ -48,8 +50,8 @@
             <td>27017:27017</td>
             <td>dev_network</td>
             <td>
-                MONGO_INITDB_ROOT_USERNAME: root<br>
-                MONGO_INITDB_ROOT_PASSWORD: root-dev-password<br>
+                RootUsername: root<br>
+                RootPassword: root-dev-password<br>
             </td>
         </tr>
         <tr>
@@ -62,20 +64,14 @@
         <tr>
             <td>S3Mock 3.5.2</td>
             <td>s3mock-5-3</td>
-            <td>
-                9090:9090<br>
-                9091:9091 (Admin)</span>
-            </td>
+            <td>9090:9090</td>
             <td>dev_network</td>
             <td></td>
         </tr>
         <tr>
             <td>S3Mock 3.6.0</td>
             <td>s3mock-6-0</td>
-            <td>
-                9092:9090<br>
-                9093:9091 (Admin)</span>
-            </td>
+            <td>9092:9090</td>
             <td>dev_network</td>
             <td></td>
         </tr>
@@ -84,12 +80,12 @@
             <td>minio</td>
             <td>
                 9004:9000<br>
-                9005:9001 (Admin)</span>
+                9005:9001 (MinIO Console)
             </td>
             <td>dev_network</td>
             <td>
-                MINIO_ROOT_USER: minio<br>
-                MINIO_ROOT_PASSWORD: dev-password<br>
+                RootUsername: minio<br>
+                RootPassword: dev-password<br>
             </td>
         </tr>
     </tbody>
