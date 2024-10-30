@@ -12,6 +12,9 @@ RUN apt-get install -y --no-install-recommends \
 RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls --2 \
     && mv composer.phar /usr/local/bin/composer
 
-RUN composer require "squizlabs/php_codesniffer"
+RUN composer require \
+	"squizlabs/php_codesniffer 3.7.*" \
+	"friendsofphp/php-cs-fixer 3.*" \
+	--no-interaction
 
 RUN apt-get clean
