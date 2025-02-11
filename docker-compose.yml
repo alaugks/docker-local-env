@@ -54,6 +54,8 @@ services:
       context: .
       dockerfile: Dockerfile.php-fpm-cf
     container_name: php-fpm-cf
+    ports:
+      - "10000:9000"
     networks:
       - dev_network
     restart: always

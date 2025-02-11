@@ -18,3 +18,5 @@ RUN composer require \
 	--no-interaction
 
 RUN apt-get clean
+
+EXPOSE 9000
