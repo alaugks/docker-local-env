@@ -15,7 +15,7 @@
             <td>MariaDB 10.9.3</td>
             <td>mariadb-10-9</td>
             <td>13306:3306</td>
-            <td>dev_network</td>
+            <td>local_network</td>
             <td>
                 RootUsername: root<br>
                 RootPassword: root-password<br>
@@ -28,7 +28,7 @@
             <td>MariaDB 10.6.16</td>
             <td>mariadb-10-6</td>
             <td>13307:3306</td>
-            <td>dev_network</td>
+            <td>local_network</td>
             <td>
                 RootUsername: root<br>
                 RootPassword: root-password<br>
@@ -41,14 +41,14 @@
             <td>Redis 7.2.4</td>
             <td>redis-7-2</td>
             <td>16379:6379</td>
-            <td>dev_network</td>
+            <td>local_network</td>
             <td></td>
         </tr>
         <tr>
             <td>MongoDB 7.0.12</td>
             <td>mongo-7-0</td>
             <td>27017:27017</td>
-            <td>dev_network</td>
+            <td>local_network</td>
             <td>
                 RootUsername: root<br>
                 RootPassword: root-dev-password<br>
@@ -58,14 +58,14 @@
             <td>PHP-FPM 8.2.21 for CodeSniffer</td>
             <td></td>
             <td></td>
-            <td>dev_network</td>
+            <td>local_network</td>
             <td></td>
         </tr>
         <tr>
             <td>S3Mock 3.11.0</td>
             <td>s3mock-3</td>
             <td>9092:9090</td>
-            <td>dev_network</td>
+            <td>local_network</td>
             <td></td>
         </tr>
         <tr>
@@ -75,7 +75,7 @@
                 9004:9000<br>
                 9005:9001 (MinIO Console)
             </td>
-            <td>dev_network</td>
+            <td>local_network</td>
             <td>
                 RootUsername: minio<br>
                 RootPassword: dev-password<br>

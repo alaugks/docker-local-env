@@ -1,6 +1,24 @@
 services:
 
   # MariaDB 10.9.3
+  mariadb-10-11:
+    image: mariadb:10.11.11
+    container_name: mariadb-10-11
+    ports:
+      - "13308:3306"
+    volumes:
+      - mariadb-10-11:/var/lib/mysql
+    networks:
+      - local_network
+    command: --max_allowed_packet=32505856
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root-password
+      MARIADB_DATABASE: dev-database
+      MARIADB_USER: dev-user
+      MARIADB_PASSWORD: dev-password
+
+  # MariaDB 10.9.3
   mariadb-10-9:
     image: mariadb:10.9.3
     container_name: mariadb-10-9
@@ -9,7 +27,7 @@ services:
     volumes:
       - mariadb-10-9:/var/lib/mysql
     networks:
-      - dev_network
+      - local_network
     command: --max_allowed_packet=32505856
     restart: always
     environment:
@@ -27,7 +45,7 @@ services:
     volumes:
       - mariadb-10-6:/var/lib/mysql
     networks:
-      - dev_network
+      - local_network
     command: --max_allowed_packet=32505856
     restart: always
     environment:
@@ -35,6 +53,9 @@ services:
       MARIADB_DATABASE: dev-database
       MARIADB_USER: dev-user
       MARIADB_PASSWORD: dev-password
+
+  # MariaDB 10.9.3
+
 
   # Redis 7.2.4
   redis-7-2:
@@ -45,7 +66,7 @@ services:
     volumes:
       - redis-7-2:/data
     networks:
-      - dev_network
+      - local_network
     restart: always
 
   # PHP 8.2.21-fpm
@@ -57,7 +78,7 @@ services:
     ports:
       - "10000:9000"
     networks:
-      - dev_network
+      - local_network
     restart: always
 
   # S3Mock
@@ -69,7 +90,7 @@ services:
     volumes:
       - s3mock:/data
     networks:
-      - dev_network
+      - local_network
     restart: always
     environment:
       - initialBuckets=test-bucket
@@ -84,7 +105,7 @@ services:
     volumes:
       - minio:/data
     networks:
-      - dev_network
+      - local_network
     restart: always
     environment:
       MINIO_ROOT_USER: minio
@@ -112,13 +133,15 @@ services:
     volumes:
       - mongo-7-0:/data
     networks:
-      - dev_network
+      - local_network
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root-dev-password
 
 volumes:
+  mariadb-10-11:
+    name: mariadb-10-11
   mariadb-10-6:
     name: mariadb-10-6
   mariadb-10-9:
@@ -131,7 +154,10 @@ volumes:
     name: minio
   mongo-7-0:
     name: mongo-7-0
+  mock-saml:
+    name: mock-saml
 
 networks:
-  dev_network:
-    name: dev_network
+  local_network:
+    name: local_network
+#    external: true
