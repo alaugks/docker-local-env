@@ -12,6 +12,19 @@
     </thead>
     <tbody>
         <tr>
+            <td>MariaDB 10.11.11</td>
+            <td>mariadb-10-11</td>
+            <td>13308:3306</td>
+            <td>local_network</td>
+            <td>
+                RootUsername: root<br>
+                RootPassword: root-password<br>
+                DefaultDatabase: dev-database<br>
+                DefaultUser: dev-user<br>
+                DefaultPassword: dev-password<br>
+            </td>
+        </tr>
+        <tr>
             <td>MariaDB 10.9.3</td>
             <td>mariadb-10-9</td>
             <td>13306:3306</td>
@@ -45,6 +58,13 @@
             <td></td>
         </tr>
         <tr>
+            <td>ValKey 8.1.3</td>
+            <td>valkey-8-1</td>
+            <td>26379:6379</td>
+            <td>local_network</td>
+            <td></td>
+        </tr>
+        <tr>
             <td>MongoDB 7.0.12</td>
             <td>mongo-7-0</td>
             <td>27017:27017</td>
@@ -56,8 +76,8 @@
         </tr>
         <tr>
             <td>PHP-FPM 8.2.21 for CodeSniffer</td>
-            <td></td>
-            <td></td>
+            <td>php-fpm-cf</td>
+            <td>10000:9000</td>
             <td>local_network</td>
             <td></td>
         </tr>
