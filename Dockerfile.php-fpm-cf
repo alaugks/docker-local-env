@@ -1,22 +1,22 @@
-FROM php:8.2.21-fpm
+# hadolint ignore=DL3002
+# php-fpm master must run as root to manage the worker pool; workers already
+# drop to www-data via the default www.conf. Local-only tooling container
+# (PHPStorm CodeSniffer/CS-Fixer interpreter), no host code is mounted here.
+FROM php:8.4.23-fpm
 
-# > Only for debugging
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-# < Only for debugging
+# > Only for debugging: replace dash with bash as /bin/sh
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh \
+    && apt-get --allow-releaseinfo-change update \
+    && apt-get install -y --no-install-recommends \
+        git \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get --allow-releaseinfo-change update
-
-RUN apt-get install -y --no-install-recommends \
-    git
-
-RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls --2 \
-    && mv composer.phar /usr/local/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
 
 RUN composer require \
-	"squizlabs/php_codesniffer 3.7.*" \
+	"squizlabs/php_codesniffer 4.*" \
 	"friendsofphp/php-cs-fixer 3.*" \
 	--no-interaction
-
-RUN apt-get clean
 
 EXPOSE 9000

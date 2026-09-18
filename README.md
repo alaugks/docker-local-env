@@ -12,7 +12,7 @@
     </thead>
     <tbody>
         <tr>
-            <td>MariaDB 10.11.11</td>
+            <td>MariaDB 10.11.18</td>
             <td>mariadb-10-11</td>
             <td>13308:3306</td>
             <td>local_network</td>
@@ -25,7 +25,7 @@
             </td>
         </tr>
         <tr>
-            <td>MariaDB 10.9.3</td>
+            <td>MariaDB 10.9.8</td>
             <td>mariadb-10-9</td>
             <td>13306:3306</td>
             <td>local_network</td>
@@ -38,7 +38,7 @@
             </td>
         </tr>
         <tr>
-            <td>MariaDB 10.6.16</td>
+            <td>MariaDB 10.6.27</td>
             <td>mariadb-10-6</td>
             <td>13307:3306</td>
             <td>local_network</td>
@@ -51,21 +51,21 @@
             </td>
         </tr>
         <tr>
-            <td>Redis 7.2.4</td>
+            <td>Redis 7.2.15</td>
             <td>redis-7-2</td>
             <td>16379:6379</td>
             <td>local_network</td>
             <td></td>
         </tr>
         <tr>
-            <td>ValKey 8.1.3</td>
+            <td>ValKey 8.1.9</td>
             <td>valkey-8-1</td>
             <td>26379:6379</td>
             <td>local_network</td>
             <td></td>
         </tr>
         <tr>
-            <td>MongoDB 7.0.12</td>
+            <td>MongoDB 7.0.39</td>
             <td>mongo-7-0</td>
             <td>27017:27017</td>
             <td>local_network</td>
@@ -75,15 +75,15 @@
             </td>
         </tr>
         <tr>
-            <td>PHP-FPM 8.2.21 for CodeSniffer</td>
+            <td>PHP-FPM 8.4.23 for CodeSniffer</td>
             <td>php-fpm-cf</td>
             <td>10000:9000</td>
             <td>local_network</td>
             <td></td>
         </tr>
         <tr>
-            <td>S3Mock 3.11.0</td>
-            <td>s3mock-3</td>
+            <td>S3Mock 5.1.0</td>
+            <td>s3mock</td>
             <td>9092:9090</td>
             <td>local_network</td>
             <td></td>
@@ -137,7 +137,7 @@ DB_PASSWORD=dev-password
 DB_HOST=mariadb-10-9
 DB_PORT=3306
 DB_NAME=your_database
-DB_SERVER_VERSION=10.9.3-MariaDB
+DB_SERVER_VERSION=10.9.8-MariaDB
 ```
 
 **services.yaml**
