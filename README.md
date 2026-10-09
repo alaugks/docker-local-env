@@ -1,20 +1,121 @@
 # Services for locale Development
 
-* MariaDB 10.9.3
-* MariaDB 10.6.16
-* Redis 7.2.4
-* MongoDB 7.0.12
-* PHP-FPM 8.2.21 for CodeSniffer
-* S3Mock 3.5.2
-* S3Mock 3.6.0
-* min.io RELEASE.2024-06-29T01-20-47Z
+<table>
+    <thead>
+        <tr>
+            <td>Service</td>
+             <td>Container Name</td>
+             <td>Ports</td>
+             <td>Network</td>
+             <td>Credentials</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>MariaDB 10.11.19</td>
+            <td>mariadb-10-11</td>
+            <td>13308:3306</td>
+            <td>local_network</td>
+            <td>
+                RootUsername: root<br>
+                RootPassword: root-password<br>
+                DefaultDatabase: dev-database<br>
+                DefaultUser: dev-user<br>
+                DefaultPassword: dev-password<br>
+            </td>
+        </tr>
+        <tr>
+            <td>MariaDB 10.9.8</td>
+            <td>mariadb-10-9</td>
+            <td>13306:3306</td>
+            <td>local_network</td>
+            <td>
+                RootUsername: root<br>
+                RootPassword: root-password<br>
+                DefaultDatabase: dev-database<br>
+                DefaultUser: dev-user<br>
+                DefaultPassword: dev-password<br>
+            </td>
+        </tr>
+        <tr>
+            <td>MariaDB 10.6.28</td>
+            <td>mariadb-10-6</td>
+            <td>13307:3306</td>
+            <td>local_network</td>
+            <td>
+                RootUsername: root<br>
+                RootPassword: root-password<br>
+                DefaultDatabase: dev-database<br>
+                DefaultUser: dev-user<br>
+                DefaultPassword: dev-password<br>
+            </td>
+        </tr>
+        <tr>
+            <td>Redis 7.2.16</td>
+            <td>redis-7-2</td>
+            <td>16379:6379</td>
+            <td>local_network</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>ValKey 8.1.10</td>
+            <td>valkey-8-1</td>
+            <td>26379:6379</td>
+            <td>local_network</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>MongoDB 7.0.43</td>
+            <td>mongo-7-0</td>
+            <td>27017:27017</td>
+            <td>local_network</td>
+            <td>
+                RootUsername: root<br>
+                RootPassword: root-dev-password<br>
+            </td>
+        </tr>
+        <tr>
+            <td>PHP-FPM 8.4.26 for CodeSniffer</td>
+            <td>php-fpm-cf</td>
+            <td>10000:9000</td>
+            <td>local_network</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>S3Mock 5.1.0</td>
+            <td>s3mock</td>
+            <td>9092:9090</td>
+            <td>local_network</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>min.io RELEASE.2025-10-15T17-29-55Z</td>
+            <td>minio</td>
+            <td>
+                9004:9000<br>
+                9005:9001 (MinIO Console)
+            </td>
+            <td>local_network</td>
+            <td>
+                RootUsername: minio<br>
+                RootPassword: dev-password<br>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 ## Installation
 
 ### Clone project
 
 ```bash
-git clone git@github.com:alaugks/docker-local.git
+git clone git@github.com:alaugks/docker-local-env.git
+```
+
+### Change directory
+
+```bash
+cd docker-local-env
 ```
 
 ### Run docker compose
@@ -23,7 +124,9 @@ git clone git@github.com:alaugks/docker-local.git
 docker compose up -d
 ```
 
-## Example of usage (MariaDB 10.9.3)
+
+
+## Example of usage (MariaDB 10.9.*)
 
 ### Example Symfony
 
@@ -33,10 +136,10 @@ docker compose up -d
 DB_DRIVER=mysql
 DB_USER=dev-user
 DB_PASSWORD=dev-password
-DB_HOST=mariadb-10-9-3
+DB_HOST=mariadb-10-9
 DB_PORT=3306
 DB_NAME=your_database
-DB_SERVER_VERSION=10.9.3-MariaDB
+DB_SERVER_VERSION=10.9.8-MariaDB
 ```
 
 **services.yaml**
@@ -51,7 +154,7 @@ parameters:
 **application.properties**
 
 ```dotenv
-spring.datasource.url=jdbc:mariadb://mariadb-10-9-3:3306/your_database
+spring.datasource.url=jdbc:mariadb://mariadb-10-9:3306/your_database
 spring.datasource.username=dev-user
 spring.datasource.password=dev-password
 spring.datasource.driver-class-name=org.mariadb.jdbc.Driver

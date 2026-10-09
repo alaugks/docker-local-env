@@ -1,0 +1,61 @@
+# Dependabot cannot track the MinIO release (a git tag that is built from
+# source, see Dockerfile.minio). This workflow checks for a newer tag weekly
+# and opens a PR that updates docker-compose.yml, Dockerfile.minio and README.md.
+name: MinIO release update
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Determine current and latest release
+        id: version
+        run: |
+          current=$(sed -nE 's/^ *RELEASE: (RELEASE\.[0-9TZ-]+)$/\1/p' docker-compose.yml)
+          # RELEASE.YYYY-MM-DDTHH-MM-SSZ sorts chronologically when sorted lexically
+          latest=$(git ls-remote --tags --refs https://github.com/minio/minio.git 'RELEASE.*' \
+            | sed -E 's#.*refs/tags/##' | sort | tail -n 1)
+          test -n "$current" && test -n "$latest" || { echo "Could not determine versions" >&2; exit 1; }
+          echo "current=$current" >> "$GITHUB_OUTPUT"
+          echo "latest=$latest" >> "$GITHUB_OUTPUT"
+
+      - name: Update version references
+        id: update
+        if: steps.version.outputs.current != steps.version.outputs.latest
+        env:
+          CURRENT: ${{ steps.version.outputs.current }}
+          LATEST: ${{ steps.version.outputs.latest }}
+        run: |
+          sed -i "s/${CURRENT}/${LATEST}/g" docker-compose.yml Dockerfile.minio README.md
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Open pull request
+        if: steps.update.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CURRENT: ${{ steps.version.outputs.current }}
+          LATEST: ${{ steps.version.outputs.latest }}
+        run: |
+          branch="minio-release/${LATEST}"
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null; then
+            echo "Branch $branch already exists, skipping"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git commit -am "Update MinIO to ${LATEST}"
+          git push origin "$branch"
+          gh pr create \
+            --title "Update MinIO to ${LATEST}" \
+            --body "Bumps MinIO from \`${CURRENT}\` to \`${LATEST}\` (docker-compose.yml, Dockerfile.minio, README.md)."

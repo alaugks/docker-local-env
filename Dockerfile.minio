@@ -1,0 +1,30 @@
+# MinIO community edition is source-only (no official images/binaries anymore,
+# upstream repository is unmaintained). Build the image from the release tag.
+# https://github.com/minio/minio#build-docker-image
+FROM golang:1.24-alpine@sha256:8bee1901f1e530bfb4a7850aa7a479d17ae3a18beb6e09064ed54cfd245b7191 AS build
+
+# Required, e.g. --build-arg RELEASE=RELEASE.2025-10-15T17-29-55Z
+ARG RELEASE
+
+ENV CGO_ENABLED=0
+
+RUN test -n "${RELEASE}" || { echo "ERROR: build arg RELEASE is required" >&2; exit 1; } \
+    && apk add --no-cache git \
+    && git clone --depth 1 --branch "${RELEASE}" https://github.com/minio/minio.git /src
+
+WORKDIR /src
+
+RUN go build -trimpath -ldflags "$(go run buildscripts/gen-ldflags.go)" -o /out/minio .
+
+FROM alpine:3.22@sha256:5291449c3df73caf6ed85e649dec1b9e818b39a5d8c871e97afc13e9cd5e8fa8
+
+RUN apk add --no-cache ca-certificates
+
+COPY --from=build /out/minio /usr/bin/minio
+COPY --from=build /src/dockerscripts/docker-entrypoint.sh /usr/bin/docker-entrypoint.sh
+
+EXPOSE 9000 9001
+VOLUME ["/data"]
+
+ENTRYPOINT ["/usr/bin/docker-entrypoint.sh"]
+CMD ["minio"]
