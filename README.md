@@ -1,5 +1,19 @@
 # Services for locale Development
 
+## Table of contents
+
+- [Services](#services)
+- [Network](#network)
+- [Installation](#installation)
+  - [Clone project](#clone-project)
+  - [Change directory](#change-directory)
+  - [Run docker compose](#run-docker-compose)
+- [Example of usage (MariaDB 10.9.*)](#example-of-usage-mariadb-109)
+  - [Example Symfony](#example-symfony)
+  - [Example Spring Boot](#example-spring-boot)
+- [Use CodeSniffer in PHPStorm](#use-codesniffer-in-phpstorm)
+
+## Services
 <table>
     <thead>
         <tr>
@@ -103,6 +117,25 @@
         </tr>
     </tbody>
 </table>
+
+## Network
+
+All services are attached to the Docker network `local_network` (bridge driver, fixed name).
+Containers in this network reach each other by their container name, e.g. `minio:9000`
+(the host ports from the table above are only needed from the host machine).
+
+To use the services from another Docker Compose project, attach that project to the same network:
+
+```yaml
+services:
+  app:
+    networks:
+      - local_network
+
+networks:
+  local_network:
+    external: true
+```
 
 ## Installation
 
