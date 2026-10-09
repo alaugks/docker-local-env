@@ -1,8 +1,8 @@
 services:
 
-  # MariaDB 10.11.18
+  # MariaDB 10.11.19
   mariadb-10-11:
-    image: mariadb:10.11.18
+    image: mariadb:10.11.19@sha256:7db29378d4fdab73f8123bbc2b48905c90d1a4b00cf848b028f1e81e623257f2
     container_name: mariadb-10-11
     ports:
       - "13308:3306"
@@ -20,7 +20,7 @@ services:
 
   # MariaDB 10.9.8
   mariadb-10-9:
-    image: mariadb:10.9.8
+    image: mariadb:10.9.8@sha256:56710811b0b96233ef84f4982d3337d88d3aa46a68f3fcb2853b94e1d04ea25c
     container_name: mariadb-10-9
     ports:
       - "13306:3306"
@@ -36,9 +36,9 @@ services:
       MARIADB_USER: dev-user
       MARIADB_PASSWORD: dev-password
 
-  # MariaDB 10.6.27
+  # MariaDB 10.6.28
   mariadb-10-6:
-    image: mariadb:10.6.27
+    image: mariadb:10.6.28@sha256:23616f0bd3aff922f4dea4130f1d0a09f3571d20b7b36c8f49840672dc309e8c
     container_name: mariadb-10-6
     ports:
       - "13307:3306"
@@ -54,9 +54,9 @@ services:
       MARIADB_USER: dev-user
       MARIADB_PASSWORD: dev-password
 
-  # Redis 7.2.15
+  # Redis 7.2.16
   redis-7-2:
-    image: redis:7.2.15-alpine
+    image: redis:7.2.16-alpine@sha256:29e8589c3f9ba699b5f7aa4b3c7733c58852a3626439e619aa0ee78de08c6ca0
     container_name: redis-7-2
     ports:
       - "16379:6379"
@@ -66,9 +66,9 @@ services:
       - local_network
     restart: always
 
-  # ValKey 8.1.9
+  # ValKey 8.1.10
   valkey-8-1:
-    image: valkey/valkey:8.1.9-alpine
+    image: valkey/valkey:8.1.10-alpine@sha256:081c2f5cb575efc901aa80ff9cdbd1ec6a301682fd35e1ebb4b0990a4a4a8507
     container_name: valkey-8-1
     ports:
       - "26379:6379"
@@ -78,7 +78,7 @@ services:
       - local_network
     restart: always
 
-  # PHP 8.4.23-fpm
+  # PHP 8.4.26-fpm
   php-fpm-cf:
     build:
       context: .
@@ -92,7 +92,7 @@ services:
 
   # S3Mock 5.1.0
   s3mock:
-    image: adobe/s3mock:5.1.0
+    image: adobe/s3mock:5.1.0@sha256:65cf60155a2e235fe7d5bf6c633747d6fc7ed93f9f5a6727d86470026b83c2a2
     container_name: s3mock
     ports:
       - "9092:9090"
@@ -104,9 +104,14 @@ services:
     environment:
       - initialBuckets=test-bucket
 
-  # min.io RELEASE.2024-06-29T01-20-47Z
+  # min.io RELEASE.2025-10-15T17-29-55Z (built from source)
   minio:
-    image: minio/minio:RELEASE.2024-06-29T01-20-47Z
+    build:
+      context: .
+      dockerfile: Dockerfile.minio
+      args:
+        RELEASE: RELEASE.2025-10-15T17-29-55Z
+    image: local/minio:RELEASE.2025-10-15T17-29-55Z
     container_name: minio
     ports:
       - "9004:9000"
@@ -133,9 +138,9 @@ services:
       exit 0;
       "
 
-  # MongoDB 7.0.39
+  # MongoDB 7.0.43
   mongo-7-0:
-    image: mongo:7.0.39
+    image: mongo:7.0.43@sha256:1f995ad6fdb93244a1addab1b58f934a0bc2f5643c38e02f5e9d7f0c7d227a7b
     container_name: mongo-7-0
     ports:
       - "27017:27017"

@@ -12,7 +12,7 @@
     </thead>
     <tbody>
         <tr>
-            <td>MariaDB 10.11.18</td>
+            <td>MariaDB 10.11.19</td>
             <td>mariadb-10-11</td>
             <td>13308:3306</td>
             <td>local_network</td>
@@ -38,7 +38,7 @@
             </td>
         </tr>
         <tr>
-            <td>MariaDB 10.6.27</td>
+            <td>MariaDB 10.6.28</td>
             <td>mariadb-10-6</td>
             <td>13307:3306</td>
             <td>local_network</td>
@@ -51,21 +51,21 @@
             </td>
         </tr>
         <tr>
-            <td>Redis 7.2.15</td>
+            <td>Redis 7.2.16</td>
             <td>redis-7-2</td>
             <td>16379:6379</td>
             <td>local_network</td>
             <td></td>
         </tr>
         <tr>
-            <td>ValKey 8.1.9</td>
+            <td>ValKey 8.1.10</td>
             <td>valkey-8-1</td>
             <td>26379:6379</td>
             <td>local_network</td>
             <td></td>
         </tr>
         <tr>
-            <td>MongoDB 7.0.39</td>
+            <td>MongoDB 7.0.43</td>
             <td>mongo-7-0</td>
             <td>27017:27017</td>
             <td>local_network</td>
@@ -75,7 +75,7 @@
             </td>
         </tr>
         <tr>
-            <td>PHP-FPM 8.4.23 for CodeSniffer</td>
+            <td>PHP-FPM 8.4.26 for CodeSniffer</td>
             <td>php-fpm-cf</td>
             <td>10000:9000</td>
             <td>local_network</td>
@@ -89,7 +89,7 @@
             <td></td>
         </tr>
         <tr>
-            <td>min.io RELEASE.2024-06-29T01-20-47Z</td>
+            <td>min.io RELEASE.2025-10-15T17-29-55Z</td>
             <td>minio</td>
             <td>
                 9004:9000<br>
@@ -123,6 +123,8 @@ cd docker-local-env
 ```bash
 docker compose up -d
 ```
+
+
 
 ## Example of usage (MariaDB 10.9.*)
 
