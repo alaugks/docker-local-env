@@ -245,7 +245,7 @@ The container is a plain Node.js instance without a project mount.
 
 ```
 /usr/local/bin/node
-```
+``` 
 
 **Path npm**
 
