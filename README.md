@@ -12,6 +12,7 @@
   - [Example Symfony](#example-symfony)
   - [Example Spring Boot](#example-spring-boot)
 - [Use CodeSniffer in PHPStorm](#use-codesniffer-in-phpstorm)
+- [Use Node.js and npm in JetBrains IDEs](#use-nodejs-and-npm-in-jetbrains-ides)
 
 ## Services
 <table>
@@ -115,6 +116,13 @@
                 RootPassword: dev-password<br>
             </td>
         </tr>
+        <tr>
+            <td>Node.js 24.22.0 LTS (npm)</td>
+            <td>node-24</td>
+            <td></td>
+            <td>local_network</td>
+            <td></td>
+        </tr>
     </tbody>
 </table>
 
@@ -197,7 +205,7 @@ spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
 
 **Settings CLI Interpreters**
 
-![CLI_Interpreters.png](docs/CLI_Interpreters.png)
+![CLI_Interpreters.png](docs/PHP_CLI_Interpreters.png)
 
 
 **Settings PHP CodeSniffer**
@@ -217,3 +225,38 @@ spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
 ```
 /var/www/html/vendor/squizlabs/php_codesniffer/bin/phpcbf
 ```
+
+## Use Node.js and npm in JetBrains IDEs
+
+The `node-24` container runs Node.js (current LTS) and npm, so no local Node.js installation is needed.
+The container is a plain Node.js instance without a project mount.
+
+1. Start the container: `docker compose up -d node-24`
+2. In the IDE open **Settings > Languages & Frameworks > Node.js**
+3. **Node interpreter** > **Add...** > **Add Remote...** > **Docker Compose**
+4. Select `docker-compose.yml` of this project and the service `node-24`
+5. Set the paths inside the container if the IDE asks for them (verified in the image):
+
+**Settings Node.js Remote Runtime**
+
+![Node_Remote_Runtime.png](docs/Node_Remote_Runtime.png)
+
+**Path Node.js**
+
+```
+/usr/local/bin/node
+```
+
+**Path npm**
+
+```
+/usr/local/bin/npm
+```
+
+**Path npm package (package manager in the IDE)**
+
+```
+/usr/local/lib/node_modules/npm
+```
+
+Alternatively, add the image `node:24.22.0-alpine` directly as a **Docker** interpreter (**Add Remote...** > **Docker**); the IDE then mounts the project itself.

@@ -153,6 +153,19 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root-dev-password
 
+  # Node.js 24.22.0 LTS (Krypton) with npm
+  # Interpreter container for (JetBrains) IDEs (Settings > Node.js > Docker Compose),
+  # no ports, only kept alive so the IDE can run node/npm inside it.
+  node-24:
+    image: node:24.22.0-alpine@sha256:44fce696f38ba8c987c4db89954051000bbd05ffd8d8659ba15ed4a8602e937f
+    container_name: node-24
+    volumes:
+      - node-24-npm-cache:/home/node/.npm
+    networks:
+      - local_network
+    command: tail -f /dev/null
+    restart: always
+
 volumes:
   mariadb-10-11:
     name: mariadb-10-11
@@ -172,6 +185,8 @@ volumes:
     name: mongo-7-0
   mock-saml:
     name: mock-saml
+  node-24-npm-cache:
+    name: node-24-npm-cache
 
 networks:
   local_network:
