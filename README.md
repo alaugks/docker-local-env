@@ -80,7 +80,7 @@
             <td></td>
         </tr>
         <tr>
-            <td>MongoDB 7.0.43</td>
+            <td>MongoDB 7.0.45</td>
             <td>mongo-7-0</td>
             <td>27017:27017</td>
             <td>local_network</td>
@@ -90,7 +90,7 @@
             </td>
         </tr>
         <tr>
-            <td>PHP-FPM 8.4.26 for CodeSniffer</td>
+            <td>PHP-FPM 8.4.27 for CodeSniffer</td>
             <td>php-fpm-cf</td>
             <td>10000:9000</td>
             <td>local_network</td>
