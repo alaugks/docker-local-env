@@ -2,13 +2,14 @@
 # php-fpm master must run as root to manage the worker pool; workers already
 # drop to www-data via the default www.conf. Local-only tooling container
 # (PHPStorm CodeSniffer/CS-Fixer interpreter), no host code is mounted here.
-FROM php:8.4.26-fpm@sha256:1071b5609d16d60674f78eea8cf9bd7e9e79169ecb566d015c931c5ee789bb13
+FROM php:8.4.27-fpm@sha256:e2d8e787dc775bdbd9d7e0c5e8f2f9ddb41ce5977c8bbaf99a2ba2e7d90fd8ae
 
 # > Only for debugging: replace dash with bash as /bin/sh
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh \
     && apt-get --allow-releaseinfo-change update \
     && apt-get install -y --no-install-recommends \
         git \
+        unzip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
