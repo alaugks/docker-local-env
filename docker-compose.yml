@@ -2,7 +2,7 @@ services:
 
   # MariaDB 10.11.19
   mariadb-10-11:
-    image: mariadb:10.11.19@sha256:d769e37960821dfdcf096954f6e7ac89f747e116c1bba98e48edd265dfc7deae
+    image: mariadb:10.11.19@sha256:7d829180b5b2a9ba74f6242876ab401a0d7dd338a807e522ef92bc9698760f20
     container_name: mariadb-10-11
     ports:
       - "13308:3306"
@@ -38,7 +38,7 @@ services:
 
   # MariaDB 10.6.28
   mariadb-10-6:
-    image: mariadb:10.6.28@sha256:f1c56f035ed268a0d7c2c2e06dc879f6319b997cb434cf822a4cfd72a7aa184d
+    image: mariadb:10.6.28@sha256:c7d726a1c0d29e486a1ab4ef0c76c75431a11428e76c50e99ba32106cea04114
     container_name: mariadb-10-6
     ports:
       - "13307:3306"
