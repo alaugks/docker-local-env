@@ -2,7 +2,7 @@
 # php-fpm master must run as root to manage the worker pool; workers already
 # drop to www-data via the default www.conf. Local-only tooling container
 # (PHPStorm CodeSniffer/CS-Fixer interpreter), no host code is mounted here.
-FROM php:8.4.27-fpm@sha256:212c3c9fc09d58f6b1a12b0b4a6a90fd44a209299a67633c2bccbc1dd53c55e0
+FROM php:8.4.28RC1-fpm@sha256:dce7873065d1265dd854a2b3e21002724d659d3a15acbc4803a93bf27c7cbfa5
 
 # > Only for debugging: replace dash with bash as /bin/sh
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh \
