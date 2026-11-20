@@ -56,7 +56,7 @@ services:
 
   # Redis 7.2.16
   redis-7-2:
-    image: redis:7.2.16-alpine@sha256:ee061d86c25773048211e99f00d63b47b9ecfe28560113e16cce2c962d5bec1c
+    image: redis:7.2.17-alpine@sha256:2f66de68111e64c3927859f158f8e666066dae2b97d9f82770a6f37a5aa1c335
     container_name: redis-7-2
     ports:
       - "16379:6379"
